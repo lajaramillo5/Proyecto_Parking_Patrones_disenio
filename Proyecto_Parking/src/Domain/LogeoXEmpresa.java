@@ -5,10 +5,10 @@ import Domain.Entities.Empresa;
 
 public interface LogeoXEmpresa {
 
-    void RegistrarCuentaEmpresa(CuentaEmpresa cuenta);
+   int RegistrarCuentaEmpresa(CuentaEmpresa cuenta);
 
 
-    void ExisteEmail(String email, String login);
+   boolean  ExisteEmail(String email, String login);
 
    
     void AgregarEmpresa(Empresa empresa);

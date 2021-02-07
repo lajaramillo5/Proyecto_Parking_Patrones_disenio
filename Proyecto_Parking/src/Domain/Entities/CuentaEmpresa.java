@@ -4,47 +4,54 @@ package Domain.Entities;
 
 public class CuentaEmpresa {
  
-    private String Login;
+    public String Login;
 
-
-    private String email;
-
- 
-    private String password;
+    public int id_cuentas;
+    public String email;
 
  
-    String getLogin() {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        return this.Login;
+    public String password;
+
+    public CuentaEmpresa(String Login, String email, String password) {
+        this.Login = Login;
+        this.email = email;
+        this.password = password;
     }
 
-
-    void setLogin(String value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.Login = value;
+    public CuentaEmpresa() {
     }
 
-    String getEmail() {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        return this.email;
+    public String getLogin() {
+        return Login;
     }
 
-
-    void setEmail(String value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.email = value;
+    public void setLogin(String Login) {
+        this.Login = Login;
     }
 
-   
-    String getPassword() {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        return this.password;
+    public String getEmail() {
+        return email;
     }
 
-
-    void setPassword(String value) {
-        // Automatically generated method. Please delete this comment before entering specific code.
-        this.password = value;
+    public int getId_cuentas() {
+        return id_cuentas;
     }
 
+    public void setId_cuentas(int id_cuentas) {
+        this.id_cuentas = id_cuentas;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+ 
 }
