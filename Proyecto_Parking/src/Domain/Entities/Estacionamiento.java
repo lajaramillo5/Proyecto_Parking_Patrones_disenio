@@ -3,7 +3,7 @@ package Domain.Entities;
 
 public class Estacionamiento {
 
-    private int NumeroDeEspacios;
+   public int NumeroDeEspacios;
 
 
     int getNumeroDeEspacios() {

@@ -127,7 +127,7 @@ int codigo;
            
             FrmParking cuent=new FrmParking();
             cuent.setVisible(true);
-            cuent.codigo=Integer.valueOf(this.Codigo.getText()) ;
+            cuent.codigo=Integer.valueOf(this.codigo) ;
             dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed

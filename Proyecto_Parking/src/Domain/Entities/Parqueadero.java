@@ -4,17 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Parqueadero {
+
     public int id_parqueadero;
- 
+
     private String Nombre;
 
-
     private String Dirección;
+    public List<Administrador> administrador = new ArrayList<Administrador>();
 
+    public List<Empresa> empres = new ArrayList<Empresa>();
 
-    public List<Administrador> administrador = new ArrayList<Administrador> ();
-    
-      public List<Empresa> empres = new ArrayList<Empresa> ();
+    public Parqueadero(String Nombre, String Dirección, Estacionamiento estacionamiento) {
+        this.id_parqueadero = id_parqueadero;
+        this.Nombre = Nombre;
+        this.Dirección = Dirección;
+        this.estacionamiento = estacionamiento;
+    }
+
+    public Parqueadero() {
+    }
 
     public int getId_parqueadero() {
         return id_parqueadero;
@@ -31,7 +39,7 @@ public class Parqueadero {
     public void setEmpres(List<Empresa> empres) {
         this.empres = empres;
     }
-  
+
     public Estacionamiento estacionamiento;
 
     public String getNombre() {
@@ -65,7 +73,5 @@ public class Parqueadero {
     public void setEstacionamiento(Estacionamiento estacionamiento) {
         this.estacionamiento = estacionamiento;
     }
-
-   
 
 }

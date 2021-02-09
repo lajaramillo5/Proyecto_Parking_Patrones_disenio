@@ -26,7 +26,7 @@ public class RegistrarCuentaEmpresa implements LogeoXCuentaEmpresa {
             objCuenta.setEmail(cuenta.getEmail());
             objCuenta.setLogin(cuenta.getLogin());
             objCuenta.setPassword(cuenta.getPassword());
-            objCuenta.setIdCuenta(id);
+            objCuenta.setIdCuenta(id+1);
             objCuenta.setCodigoEmpresa(Integer.valueOf(cuenta.getEmpresa().getCodigo()));
             repository.Insertar(objCuenta);
 

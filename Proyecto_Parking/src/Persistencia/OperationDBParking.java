@@ -1,10 +1,11 @@
 package Persistencia;
 
-import Domain.Entities.Parqueadero;
+import java.util.List;
+
 public interface OperationDBParking {
 
     public int  Insertar(Parqueadero parking);
 
-    void GetAll();
+    public List<Parqueadero> GetAll();
 
 }
