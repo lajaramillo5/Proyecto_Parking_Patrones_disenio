@@ -1,7 +1,10 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Persistencia;
 
-import Adaptadores.EmpresaJpaController;
-import Domain.Entities.Empresa;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,31 +12,31 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-public class RepositorioEmpresa implements OperationEmpresa{
+/**
+ *
+ * @author Smart
+ */
+public class RepositorioEmpresa implements OperationDBEmpresa{
 
     @Override
-    public List<Empresas> getAllCuentas() {
-               //CuentaJpaController jpaObject= new CuentaJpaController(Persistence.createEntityManagerFactory("cleanArqPU") );
-        EntityManager em = Persistence.createEntityManagerFactory("Proyecto_ParkingPU").createEntityManager();
+    public List<Empresa> getAllCuentas() {
+       //CuentaJpaController jpaObject= new CuentaJpaController(Persistence.createEntityManagerFactory("cleanArqPU") );
+        EntityManager em = Persistence.createEntityManagerFactory("Proyecto_ParkingLojaPU").createEntityManager();
         //return em.createQuery("SELECT * FROM Cuenta ", Cuenta.class).getResultList();
-        TypedQuery<Empresas> query = em.createNamedQuery("Empresas.findAll", Empresas.class);
+        TypedQuery<Empresa> query = em.createNamedQuery("Empresa.findAll", Empresa.class);
         //List<Cuenta> results = query.getResultList();
-        return query.getResultList();
-    }
+        return query.getResultList(); }
 
     @Override
-    public int Insertar(Empresas cuenInsercion) {
-          try {
-          EmpresaJpaController jpaObject = new EmpresaJpaController(Persistence.createEntityManagerFactory("Proyecto_ParkingPU"));
+    public int Insertar(Empresa cuenInsercion) {
+       try {
+            EmpresaJpaController jpaObject = new EmpresaJpaController(Persistence.createEntityManagerFactory("Proyecto_ParkingLojaPU"));
 
             jpaObject.create(cuenInsercion);
 
         } catch (Exception ex) {
             Logger.getLogger(RepositorioCuenta.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return cuenInsercion.getCodigo();
-    }
-
-   
-
+        return cuenInsercion.getCodigo(); }
+    
 }

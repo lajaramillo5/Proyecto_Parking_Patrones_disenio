@@ -1,49 +1,34 @@
-package Domain.UseCase ;
+package Domain.UseCase;
 
 import Domain.Entities.CuentaEmpresa;
 import Domain.Entities.Empresa;
+
 import Domain.LogeoXEmpresa;
-import Persistencia.OperationEmpresa;
+
 import Persistencia.OperatonDBCuentaEmpresa;
+import Persistencia.OperationDBEmpresa;
 
 public class RegistrarEmpresa implements LogeoXEmpresa {
-    OperatonDBCuentaEmpresa repository;
-    OperationEmpresa repository1;
-    
-    public RegistrarEmpresa( OperatonDBCuentaEmpresa repository) {
-        this.repository=repository;
+
+    OperationDBEmpresa repository;
+
+    public RegistrarEmpresa(OperationDBEmpresa repository) {
+        this.repository = repository;
     }
 
-    public RegistrarEmpresa(OperationEmpresa repository1) {
-        this.repository1 = repository1;
-    }
-    
+    @Override
+    public int AgregarEmpresa(Empresa empresa) {
+        Empresa objcue = new Empresa();
 
-    public int RegistrarCuentaEmpresa(CuentaEmpresa cuenta) {
-         CuentaEmpresa objcue = new CuentaEmpresa();
-          int id= repository.getAllCuentas().size();
-        if (!ExisteEmail(cuenta.getLogin(), cuenta.getEmail())) {
-            //insertar cuenta
-            
-            Persistencia.Cuentaempresa objCuenta= new Persistencia.Cuentaempresa();
-            objCuenta.setEmail(cuenta.getEmail());
-            objCuenta.setLogin(cuenta.getLogin());
-            objCuenta.setPassword(cuenta.getPassword());
-            objCuenta.setIdCuenta(id);
-            repository.Insertar(objCuenta);
-            
-            return 1;
-        }
-        return -1;
-    }
+        //insertar cuenta
+        Persistencia.Empresa objCuenta = new Persistencia.Empresa();
+        objCuenta.setNombre(empresa.getNombre());
+        objCuenta.setDireccion(empresa.getDirección());
+        objCuenta.setCodigo(Integer.valueOf(empresa.getCodigo()) );
 
+        repository.Insertar(objCuenta);
 
-    public boolean ExisteEmail(String email, String login) {
-        return repository.existeLoginEmail(login, email);
-    }
-
-
-    public void AgregarEmpresa(Empresa empresa) {
+        return 1;
     }
 
 }

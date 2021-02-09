@@ -23,11 +23,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "empresa")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Empresa.findAll", query = "SELECT e FROM Empresa e"),
-    @NamedQuery(name = "Empresa.findByNombre", query = "SELECT e FROM Empresa e WHERE e.nombre = :nombre"),
-    @NamedQuery(name = "Empresa.findByDireccion", query = "SELECT e FROM Empresa e WHERE e.direccion = :direccion"),
-    @NamedQuery(name = "Empresa.findByCodigo", query = "SELECT e FROM Empresa e WHERE e.codigo = :codigo")})
-public class Empresas implements Serializable {
+    @NamedQuery(name = "Empresa.findAll", query = "SELECT e FROM Empresa e")
+    , @NamedQuery(name = "Empresa.findByNombre", query = "SELECT e FROM Empresa e WHERE e.nombre = :nombre")
+    , @NamedQuery(name = "Empresa.findByDireccion", query = "SELECT e FROM Empresa e WHERE e.direccion = :direccion")
+    , @NamedQuery(name = "Empresa.findByCodigo", query = "SELECT e FROM Empresa e WHERE e.codigo = :codigo")})
+public class Empresa implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Column(name = "nombre")
@@ -39,10 +39,10 @@ public class Empresas implements Serializable {
     @Column(name = "codigo")
     private Integer codigo;
 
-    public Empresas() {
+    public Empresa() {
     }
 
-    public Empresas(Integer codigo) {
+    public Empresa(Integer codigo) {
         this.codigo = codigo;
     }
 
@@ -80,10 +80,10 @@ public class Empresas implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Empresas)) {
+        if (!(object instanceof Empresa)) {
             return false;
         }
-        Empresas other = (Empresas) object;
+        Empresa other = (Empresa) object;
         if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
             return false;
         }

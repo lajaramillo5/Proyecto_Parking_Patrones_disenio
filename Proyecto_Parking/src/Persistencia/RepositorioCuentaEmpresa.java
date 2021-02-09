@@ -1,7 +1,10 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Persistencia;
 
-import Adaptadores.CuentaempresaJpaController;
-import Adaptadores.EmpresaJpaController;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,12 +12,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
+/**
+ *
+ * @author Smart
+ */
 public class RepositorioCuentaEmpresa implements OperatonDBCuentaEmpresa {
 
     @Override
     public List<Cuentaempresa> getAllCuentas() {
         //CuentaJpaController jpaObject= new CuentaJpaController(Persistence.createEntityManagerFactory("cleanArqPU") );
-        EntityManager em = Persistence.createEntityManagerFactory("Proyecto_ParkingPU").createEntityManager();
+        EntityManager em = Persistence.createEntityManagerFactory("Proyecto_ParkingLojaPU").createEntityManager();
         //return em.createQuery("SELECT * FROM Cuenta ", Cuenta.class).getResultList();
         TypedQuery<Cuentaempresa> query = em.createNamedQuery("Cuentaempresa.findAll", Cuentaempresa.class);
         //List<Cuenta> results = query.getResultList();
@@ -24,7 +31,7 @@ public class RepositorioCuentaEmpresa implements OperatonDBCuentaEmpresa {
     @Override
     public int Insertar(Cuentaempresa cuenInsercion) {
         try {
-           CuentaempresaJpaController jpaObject = new CuentaempresaJpaController(Persistence.createEntityManagerFactory("Proyecto_ParkingPU"));
+            CuentaempresaJpaController jpaObject = new CuentaempresaJpaController(Persistence.createEntityManagerFactory("Proyecto_ParkingLojaPU"));
 
             jpaObject.create(cuenInsercion);
 

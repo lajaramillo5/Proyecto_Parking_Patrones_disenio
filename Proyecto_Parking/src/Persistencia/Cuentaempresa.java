@@ -23,11 +23,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "cuentaempresa")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Cuentaempresa.findAll", query = "SELECT c FROM Cuentaempresa c"),
-    @NamedQuery(name = "Cuentaempresa.findByLogin", query = "SELECT c FROM Cuentaempresa c WHERE c.login = :login"),
-    @NamedQuery(name = "Cuentaempresa.findByEmail", query = "SELECT c FROM Cuentaempresa c WHERE c.email = :email"),
-    @NamedQuery(name = "Cuentaempresa.findByPassword", query = "SELECT c FROM Cuentaempresa c WHERE c.password = :password"),
-    @NamedQuery(name = "Cuentaempresa.findByIdCuenta", query = "SELECT c FROM Cuentaempresa c WHERE c.idCuenta = :idCuenta")})
+    @NamedQuery(name = "Cuentaempresa.findAll", query = "SELECT c FROM Cuentaempresa c")
+    , @NamedQuery(name = "Cuentaempresa.findByLogin", query = "SELECT c FROM Cuentaempresa c WHERE c.login = :login")
+    , @NamedQuery(name = "Cuentaempresa.findByEmail", query = "SELECT c FROM Cuentaempresa c WHERE c.email = :email")
+    , @NamedQuery(name = "Cuentaempresa.findByPassword", query = "SELECT c FROM Cuentaempresa c WHERE c.password = :password")
+    , @NamedQuery(name = "Cuentaempresa.findByIdCuenta", query = "SELECT c FROM Cuentaempresa c WHERE c.idCuenta = :idCuenta")
+    , @NamedQuery(name = "Cuentaempresa.findByCodigoEmpresa", query = "SELECT c FROM Cuentaempresa c WHERE c.codigoEmpresa = :codigoEmpresa")})
 public class Cuentaempresa implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,6 +42,8 @@ public class Cuentaempresa implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_cuenta")
     private Integer idCuenta;
+    @Column(name = "codigoEmpresa")
+    private Integer codigoEmpresa;
 
     public Cuentaempresa() {
     }
@@ -79,6 +82,14 @@ public class Cuentaempresa implements Serializable {
 
     public void setIdCuenta(Integer idCuenta) {
         this.idCuenta = idCuenta;
+    }
+
+    public Integer getCodigoEmpresa() {
+        return codigoEmpresa;
+    }
+
+    public void setCodigoEmpresa(Integer codigoEmpresa) {
+        this.codigoEmpresa = codigoEmpresa;
     }
 
     @Override

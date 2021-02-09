@@ -1,4 +1,4 @@
-package Adaptadores.exceptions;
+package Persistencia.exceptions;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,27 +1,30 @@
 package Adaptadores;
 
-import Domain.Entities.CuentaEmpresa;
+
+import Domain.Entities.Empresa;
 import Domain.LogeoXEmpresa;
-import Persistencia.OperatonDBCuentaEmpresa;
-import Persistencia.RepositorioCuentaEmpresa;
+
+import Persistencia.OperationDBEmpresa;
+
+
 
 public class LogeoXEmpresaPortInt {
 
     public LogeoXEmpresa logeoXEmpresa;
 
 
-    public OperatonDBCuentaEmpresa OperatonDBCuentaEmpresa;
+    public OperationDBEmpresa OperatonDBCuentaEmpresa;
 
 
-    public LogeoXEmpresaPortInt(LogeoXEmpresa logeoXEmpresa, OperatonDBCuentaEmpresa operatonDBCuentaEmpresa) {
+    public LogeoXEmpresaPortInt(LogeoXEmpresa logeoXEmpresa, OperationDBEmpresa operatonDBCuentaEmpresa) {
                this.logeoXEmpresa = logeoXEmpresa;
         this.OperatonDBCuentaEmpresa = operatonDBCuentaEmpresa;
     }
     
 
    
-    public int Registrar(CuentaEmpresa cuentaEmpresa) {
-        return this.logeoXEmpresa.RegistrarCuentaEmpresa(cuentaEmpresa);
+    public int Registrar(Empresa cuentaEmpresa) {
+        return this.logeoXEmpresa.AgregarEmpresa(cuentaEmpresa);
     }
 
 }

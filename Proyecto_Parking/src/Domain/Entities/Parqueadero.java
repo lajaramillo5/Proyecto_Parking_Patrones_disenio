@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Parqueadero {
+    public int id_parqueadero;
  
     private String Nombre;
 
@@ -12,7 +13,24 @@ public class Parqueadero {
 
 
     public List<Administrador> administrador = new ArrayList<Administrador> ();
+    
+      public List<Empresa> empres = new ArrayList<Empresa> ();
 
+    public int getId_parqueadero() {
+        return id_parqueadero;
+    }
+
+    public void setId_parqueadero(int id_parqueadero) {
+        this.id_parqueadero = id_parqueadero;
+    }
+
+    public List<Empresa> getEmpres() {
+        return empres;
+    }
+
+    public void setEmpres(List<Empresa> empres) {
+        this.empres = empres;
+    }
   
     public Estacionamiento estacionamiento;
 

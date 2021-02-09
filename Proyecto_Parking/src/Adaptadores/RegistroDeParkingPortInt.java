@@ -1,15 +1,25 @@
 package Adaptadores;
 
-import Domain.RegistroDeParking;
-import Persistencia.RepositorioParking;
+import Domain.Entities.Parqueadero;
+import Persistencia.OperationDBParking;
+
+
+
 
 public class RegistroDeParkingPortInt {
 
-    public RegistroDeParking registroDeParking;
+   RegistroDeParkingPortInt resgistro;
+    OperationDBParking operation;
 
-    public RepositorioParking repositorioParking;
+    public RegistroDeParkingPortInt(RegistroDeParkingPortInt resgistro, OperationDBParking operation) {
+        this.resgistro = resgistro;
+        this.operation = operation;
+    }
 
-    public RegistroDeParkingPortInt(RepositorioParking Cuenta) {
+
+
+    public int RegistroDeParkingPortInt(Parqueadero parking) {
+        return this.operation.Insertar(parking);
     }
 
 }

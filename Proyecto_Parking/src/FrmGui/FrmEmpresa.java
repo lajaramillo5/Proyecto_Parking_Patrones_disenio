@@ -6,11 +6,14 @@
 package FrmGui;
 
 import Adaptadores.LogeoXEmpresaPortInt;
-import Domain.Entities.CuentaEmpresa;
+import Domain.Entities.Empresa;
+
 import Domain.UseCase.RegistrarEmpresa;
+
 import Persistencia.RepositorioCuenta;
 import Persistencia.RepositorioCuentaEmpresa;
 import Persistencia.RepositorioEmpresa;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,25 +42,25 @@ public class FrmEmpresa extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        LOGIN = new javax.swing.JTextField();
-        email = new javax.swing.JTextField();
+        Codigo = new javax.swing.JTextField();
+        nombre = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        password = new javax.swing.JPasswordField();
+        direccion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setText("REGISTRAR CUENTA EMPRESA");
+        jLabel1.setText("REGISTRAR  EMPRESA");
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel2.setText("LOGIN");
+        jLabel2.setText("Codigo");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel3.setText("EMAIL");
+        jLabel3.setText("Nombre");
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel4.setText("PASSWORD");
+        jLabel4.setText("Direccion");
 
         jButton1.setText("Registrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -80,16 +83,16 @@ public class FrmEmpresa extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                            .addComponent(LOGIN)
-                            .addComponent(password, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                            .addComponent(Codigo)
+                            .addComponent(direccion, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(143, 143, 143)
                         .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(129, 129, 129)
                         .addComponent(jLabel1)))
-                .addContainerGap(408, Short.MAX_VALUE))
+                .addContainerGap(507, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,14 +104,14 @@ public class FrmEmpresa extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(LOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3))
-                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addContainerGap(211, Short.MAX_VALUE))
@@ -121,10 +124,20 @@ public class FrmEmpresa extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        RepositorioCuentaEmpresa objrepositorio= new RepositorioCuentaEmpresa();
-        LogeoXEmpresaPortInt objetoAdaptadorlogeo= new LogeoXEmpresaPortInt(new RegistrarEmpresa(objrepositorio), objrepositorio);
-        CuentaEmpresa objcuentadomain= new CuentaEmpresa(this.LOGIN.getText(),this.email.getText(),this.password.getText());
+        RepositorioEmpresa objrepositorio = new RepositorioEmpresa();
+        LogeoXEmpresaPortInt objetoAdaptadorlogeo = new LogeoXEmpresaPortInt(new RegistrarEmpresa(objrepositorio), objrepositorio);
+        Empresa objcuentadomain = new Empresa(this.Codigo.getText(), this.nombre.getText(), this.direccion.getText());
         objetoAdaptadorlogeo.Registrar(objcuentadomain);
+        Object opcion = JOptionPane.showInputDialog(null, "Quiere crear su cuneta ahora",
+                "OPCIONES", JOptionPane.QUESTION_MESSAGE, null,
+                new Object[]{"Seleccione", "SI", "No"}, "Seleccione");
+        if (opcion=="SI") {
+           
+            FrmCrearCuentaEmpresa cuent=new FrmCrearCuentaEmpresa();
+            cuent.setVisible(true);
+            cuent.codigo=Integer.valueOf(this.Codigo.getText()) ;
+            dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -163,14 +176,14 @@ public class FrmEmpresa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField LOGIN;
-    private javax.swing.JTextField email;
+    private javax.swing.JTextField Codigo;
+    private javax.swing.JTextField direccion;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField password;
+    private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 }

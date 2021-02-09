@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Adaptadores;
+package Persistencia;
 
-import Adaptadores.exceptions.NonexistentEntityException;
-import Adaptadores.exceptions.PreexistingEntityException;
-import Persistencia.Cuentaempresa;
+import Persistencia.exceptions.NonexistentEntityException;
+import Persistencia.exceptions.PreexistingEntityException;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

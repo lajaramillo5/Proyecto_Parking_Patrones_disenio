@@ -23,12 +23,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "parqueadero")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Parqueadero.findAll", query = "SELECT p FROM Parqueadero p"),
-    @NamedQuery(name = "Parqueadero.findByNombre", query = "SELECT p FROM Parqueadero p WHERE p.nombre = :nombre"),
-    @NamedQuery(name = "Parqueadero.findByDireccion", query = "SELECT p FROM Parqueadero p WHERE p.direccion = :direccion"),
-    @NamedQuery(name = "Parqueadero.findByNumeroespacios", query = "SELECT p FROM Parqueadero p WHERE p.numeroespacios = :numeroespacios"),
-    @NamedQuery(name = "Parqueadero.findByCodigoEmpresa", query = "SELECT p FROM Parqueadero p WHERE p.codigoEmpresa = :codigoEmpresa"),
-    @NamedQuery(name = "Parqueadero.findByIdParqueadero", query = "SELECT p FROM Parqueadero p WHERE p.idParqueadero = :idParqueadero")})
+    @NamedQuery(name = "Parqueadero.findAll", query = "SELECT p FROM Parqueadero p")
+    , @NamedQuery(name = "Parqueadero.findByNombre", query = "SELECT p FROM Parqueadero p WHERE p.nombre = :nombre")
+    , @NamedQuery(name = "Parqueadero.findByDireccion", query = "SELECT p FROM Parqueadero p WHERE p.direccion = :direccion")
+    , @NamedQuery(name = "Parqueadero.findByNumeroespacios", query = "SELECT p FROM Parqueadero p WHERE p.numeroespacios = :numeroespacios")
+    , @NamedQuery(name = "Parqueadero.findByCodigoEmpresa", query = "SELECT p FROM Parqueadero p WHERE p.codigoEmpresa = :codigoEmpresa")
+    , @NamedQuery(name = "Parqueadero.findByIdParqueadero", query = "SELECT p FROM Parqueadero p WHERE p.idParqueadero = :idParqueadero")})
 public class Parqueadero implements Serializable {
 
     private static final long serialVersionUID = 1L;

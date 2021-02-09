@@ -11,8 +11,8 @@ import java.util.List;
  *
  * @author Smart
  */
-public interface OperationEmpresa {
-    public List<Empresas> getAllCuentas();
+public interface OperationDBEmpresa {
+    public List<Empresa> getAllCuentas();
 
-    public int Insertar(Empresas cuenInsercion);
+    public int Insertar(Empresa cuenInsercion);
 }

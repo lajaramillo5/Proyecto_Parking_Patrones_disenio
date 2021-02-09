@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Adaptadores;
+package Persistencia;
 
-import Adaptadores.exceptions.NonexistentEntityException;
-import Adaptadores.exceptions.PreexistingEntityException;
-import Persistencia.Empresas;
+import Persistencia.exceptions.NonexistentEntityException;
+import Persistencia.exceptions.PreexistingEntityException;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -21,9 +20,9 @@ import javax.persistence.criteria.Root;
  *
  * @author Smart
  */
-public class EmpresaJpaController implements Serializable {
+public class ParqueaderoJpaController implements Serializable {
 
-    public EmpresaJpaController(EntityManagerFactory emf) {
+    public ParqueaderoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -32,16 +31,16 @@ public class EmpresaJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Empresas empresa) throws PreexistingEntityException, Exception {
+    public void create(Parqueadero parqueadero) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(empresa);
+            em.persist(parqueadero);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findEmpresa(empresa.getCodigo()) != null) {
-                throw new PreexistingEntityException("Empresa " + empresa + " already exists.", ex);
+            if (findParqueadero(parqueadero.getIdParqueadero()) != null) {
+                throw new PreexistingEntityException("Parqueadero " + parqueadero + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -51,19 +50,19 @@ public class EmpresaJpaController implements Serializable {
         }
     }
 
-    public void edit(Empresas empresa) throws NonexistentEntityException, Exception {
+    public void edit(Parqueadero parqueadero) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            empresa = em.merge(empresa);
+            parqueadero = em.merge(parqueadero);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = empresa.getCodigo();
-                if (findEmpresa(id) == null) {
-                    throw new NonexistentEntityException("The empresa with id " + id + " no longer exists.");
+                Integer id = parqueadero.getIdParqueadero();
+                if (findParqueadero(id) == null) {
+                    throw new NonexistentEntityException("The parqueadero with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -79,14 +78,14 @@ public class EmpresaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Empresas empresa;
+            Parqueadero parqueadero;
             try {
-                empresa = em.getReference(Empresas.class, id);
-                empresa.getCodigo();
+                parqueadero = em.getReference(Parqueadero.class, id);
+                parqueadero.getIdParqueadero();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The empresa with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The parqueadero with id " + id + " no longer exists.", enfe);
             }
-            em.remove(empresa);
+            em.remove(parqueadero);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -95,19 +94,19 @@ public class EmpresaJpaController implements Serializable {
         }
     }
 
-    public List<Empresas> findEmpresaEntities() {
-        return findEmpresaEntities(true, -1, -1);
+    public List<Parqueadero> findParqueaderoEntities() {
+        return findParqueaderoEntities(true, -1, -1);
     }
 
-    public List<Empresas> findEmpresaEntities(int maxResults, int firstResult) {
-        return findEmpresaEntities(false, maxResults, firstResult);
+    public List<Parqueadero> findParqueaderoEntities(int maxResults, int firstResult) {
+        return findParqueaderoEntities(false, maxResults, firstResult);
     }
 
-    private List<Empresas> findEmpresaEntities(boolean all, int maxResults, int firstResult) {
+    private List<Parqueadero> findParqueaderoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Empresas.class));
+            cq.select(cq.from(Parqueadero.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -119,20 +118,20 @@ public class EmpresaJpaController implements Serializable {
         }
     }
 
-    public Empresas findEmpresa(Integer id) {
+    public Parqueadero findParqueadero(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Empresas.class, id);
+            return em.find(Parqueadero.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getEmpresaCount() {
+    public int getParqueaderoCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Empresas> rt = cq.from(Empresas.class);
+            Root<Parqueadero> rt = cq.from(Parqueadero.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

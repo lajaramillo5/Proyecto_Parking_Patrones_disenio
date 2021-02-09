@@ -1,9 +1,9 @@
 package Persistencia;
 
-
+import Domain.Entities.Parqueadero;
 public interface OperationDBParking {
 
-    void Insertar();
+    public int  Insertar(Parqueadero parking);
 
     void GetAll();
 
